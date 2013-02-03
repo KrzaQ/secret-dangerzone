@@ -1,8 +1,6 @@
 # What is this?!
-
+- - -
 I find myself reusing some code in various projects, so I decided to wrap it up and call it a library.
-
-
 
 # License
 - - -
@@ -12,6 +10,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-A reasonable donation shall be made to bitcoin address `1Ng8eAQQRiXqSbLZcjMxktLaYDK2TqPJLA`
+A reasonable donation shall be made to bitcoin address `1HLZmUrx6VTmfgZ9L3QRVAnKhJtXQ2qg6o`
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
