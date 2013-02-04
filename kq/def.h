@@ -16,7 +16,7 @@ typedef unsigned int			uint;
 typedef unsigned short			ushort;
 typedef unsigned char			uchar;
 
-// char is a different type than signed char
+// char, signed char and unsigned char are all different types
 typedef unsigned char			schar;
 
 typedef std::uint64_t			u64;
