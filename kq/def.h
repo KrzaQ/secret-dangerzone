@@ -17,7 +17,9 @@ typedef unsigned short			ushort;
 typedef unsigned char			uchar;
 
 // char, signed char and unsigned char are all different types
-typedef unsigned char			schar;
+typedef signed char				schar;
+
+typedef long long				llong;
 
 typedef std::uint64_t			u64;
 typedef std::uint32_t			u32;

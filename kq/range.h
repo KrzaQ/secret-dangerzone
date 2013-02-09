@@ -70,9 +70,9 @@ constexpr RangeImpl<ullong> operator-(ullong min, RangeHelper<ullong> const& max
 	return RangeImpl<ullong>(min,max.max,1);
 }
 
-constexpr RangeImpl<long long> operator-(ullong min, RangeHelper<long long> const& max)
+constexpr RangeImpl<llong> operator-(ullong min, RangeHelper<llong> const& max)
 {
-	return RangeImpl<long long>(min,max.max,1);
+	return RangeImpl<llong>(min,max.max,1);
 }
 
 constexpr RangeImpl<ldouble> operator-(ldouble min, RangeHelper<ldouble> const& max)
