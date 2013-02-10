@@ -1,9 +1,13 @@
 #ifndef _KQ_RANGE_H_
 #define _KQ_RANGE_H_
 
+#include <limits>
+#include <stdexcept>
 #include <type_traits>
 
+#include <kq/character_pack_utils.h>
 #include <kq/def.h>
+#include <kq/math.h>
 #include <kq/type_traits.h>
 
 namespace kq
@@ -53,41 +57,77 @@ constexpr RangeImpl<> range(ullong min, ullong max, ullong step = 1)
 namespace human_readable_range
 {
 
-template<typename T = ullong>
+namespace impl
+{
+
+template<typename T = ldouble>
 struct RangeHelper
 {
 	typedef kq::signed_type<T> signedT;
 
 	constexpr RangeHelper(T max) : max(max) {}
 
-	constexpr RangeHelper<signedT> operator-() const { return RangeHelper<signedT>(-static_cast<signedT>(max)); }
+	constexpr RangeHelper<signedT> operator-() const {
+		return max > static_cast<T>(std::numeric_limits<signedT>::max()) ?
+					throw std::invalid_argument("max value too high") :
+					RangeHelper<signedT>(-static_cast<signedT>(max));
+	}
 
 	T max;
 };
 
-constexpr RangeImpl<ullong> operator-(ullong min, RangeHelper<ullong> const& max)
+template<char... c>
+struct FloatingRangeHelper : RangeHelper<ldouble>
 {
-	return RangeImpl<ullong>(min,max.max,1);
+	constexpr FloatingRangeHelper() : RangeHelper(character_pack::get_floating_point_value<c...>()) {}
+};
+
+template <typename T, T value>
+struct IntegralRangeHelper
+{
+	typedef kq::signed_type<T> signedT;
+
+	constexpr T get_value() const { return value; }
+
+	constexpr typename std::enable_if<value <= static_cast<T>(std::numeric_limits<signedT>::max()), IntegralRangeHelper<signedT,-static_cast<signedT>(value)>>::type
+	operator-() const {
+		static_assert(value <= static_cast<T>(std::numeric_limits<signedT>::max()),"maximum range value too big.");
+		return IntegralRangeHelper<signedT,-static_cast<signedT>(value)>();
+	}
+};
+
+template<bool=true, char... c> struct helper_select { typedef IntegralRangeHelper<ullong,character_pack::get_integral_value<c...>::value> type; };
+template<char... c> struct helper_select<false,c...> { typedef FloatingRangeHelper<c...> type; };
+
+template<char... c>
+using rangehelper = typename helper_select<character_pack::is_integral<c...>::value,c...>::type;
+
 }
 
-constexpr RangeImpl<llong> operator-(ullong min, RangeHelper<llong> const& max)
+template<ullong value>
+constexpr RangeImpl<ullong> operator-(ullong min, impl::IntegralRangeHelper<ullong,value> const& max)
 {
-	return RangeImpl<llong>(min,max.max,1);
+	return RangeImpl<ullong>(min,max.get_value(),1);
 }
 
-constexpr RangeImpl<ldouble> operator-(ldouble min, RangeHelper<ldouble> const& max)
+template<llong value>
+constexpr RangeImpl<llong> operator-(ullong min, impl::IntegralRangeHelper<llong,value> const& max)
+{
+	return RangeImpl<llong>(min,max.get_value(),1);
+}
+
+
+constexpr RangeImpl<ldouble> operator-(ldouble min, impl::RangeHelper<ldouble> const& max)
 {
 	return RangeImpl<ldouble>(min,max.max,1);
 }
 
-constexpr RangeHelper<> operator"" _range(ullong max)
-{
-	return RangeHelper<>(max);
-}
 
-constexpr RangeHelper<ldouble> operator"" _range(ldouble max)
+template <char... c>
+constexpr impl::rangehelper<c...> operator"" _range()
 {
-	return RangeHelper<ldouble>(max);
+	typedef impl::rangehelper<c...> type;
+	return type();
 }
 
 }
