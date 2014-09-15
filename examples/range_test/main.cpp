@@ -11,6 +11,18 @@ int main()
 	}
 	cout << endl;
 
+	using namespace kq::human_readable_range;
+	for(auto x : 28-42_range){
+		cout << x << ", ";
+	}
+	cout << endl;
+
+	for(auto x : 50-42_range){
+		cout << x << ", ";
+	}
+	cout << endl;
+
+
 	return 0;
 }
 
