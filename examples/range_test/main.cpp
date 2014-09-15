@@ -15,7 +15,7 @@ int main()
 
 	using namespace kq::human_readable_range;
 	// prints "35, 36, 37, 38, 39, 40, 41"
-	for(auto x : 40-42_range){
+	for(auto x : 35-42_range){
 		cout << x << ", ";
 	}
 	cout << endl;
