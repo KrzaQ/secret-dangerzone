@@ -5,10 +5,10 @@
 #include <stdexcept>
 #include <type_traits>
 
-#include <kq/character_pack_utils.h>
-#include <kq/def.h>
-#include <kq/math.h>
-#include <kq/type_traits.h>
+#include <kq/character_pack_utils.hpp>
+#include <kq/def.hpp>
+#include <kq/math.hpp>
+#include <kq/type_traits.hpp>
 
 namespace kq
 {

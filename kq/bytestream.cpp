@@ -1,4 +1,4 @@
-#include "bytestream.h"
+#include "bytestream.hpp"
 
 #include <fstream>
 #include <stdexcept>

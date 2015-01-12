@@ -3,8 +3,8 @@
 
 #include <type_traits>
 
-#include <kq/def.h>
-#include <kq/math.h>
+#include <kq/def.hpp>
+#include <kq/math.hpp>
 
 namespace kq
 {

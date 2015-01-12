@@ -3,7 +3,7 @@
 
 #include <type_traits>
 
-#include <kq/def.h>
+#include <kq/def.hpp>
 
 namespace kq
 {

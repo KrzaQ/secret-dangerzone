@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include "menu.hpp"
+#include <kq/menu.hpp>
 
 namespace kq{
 
